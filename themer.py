@@ -1,5 +1,6 @@
 import sys
 import os
+import glob
 import colorsys
 from colorthief import ColorThief
 
@@ -23,12 +24,15 @@ def rgb_to_string(rgb):
 # See if palette is too sparse, add some complementary colours (opposite hue 
 # same SL etc).
 
+
 if len(sys.argv) == 1:
     exit("No image specified")
 else:
     picture = sys.argv[1]
     picture = os.path.abspath(picture)
 
+
+WALLPAPER_DIR = "~/Pictures/Wallpapers"
 ncolours = 15
 thief = ColorThief(picture);
 

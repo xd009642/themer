@@ -12,7 +12,27 @@ def hsv2rgb(h, s, v):
     return (255.0*rgb[0], 255.0*rgb[1], 255.0*rgb[2])
 
 def rgb_to_string(rgb):
-    return '"'+ "'rgb("+str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])+")'" +'"'
+    return "'rgb("+str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])+")'"
+
+def palette2str(p):
+    res = "["
+    for c in p:
+        res += rgb_to_string(c) +','
+    res =  res[:-1]
+    res += ']'
+    return res
+
+def generate_palette_str(palette, light, dark):
+    #hsv_palette = [ x for p in palette rgb2hsv(p)]
+    # I now have lightest and darkest (again). Make a palette!
+    # Palette design:
+    # Row 1
+    # darkest, lighest, accent, ...
+    # Row 2
+    # Different shades of row 1?
+    result = [dark, light];
+    return palette2str(result) 
+
 # Plan
 # modes
 # Init. Run on terminal startup if colour scheme not persisted
@@ -33,12 +53,11 @@ else:
 
 
 WALLPAPER_DIR = "~/Pictures/Wallpapers"
-ncolours = 15
+ncolours = 9
 thief = ColorThief(picture);
 
 
 palette = thief.get_palette(color_count=ncolours)
-
 os.system("gsettings set org.gnome.desktop.background picture-uri " + picture);
 os.system("gsettings set org.gnome.desktop.screensaver picture-uri " + picture);
 
@@ -51,6 +70,13 @@ if darkhsv[2] > 0.4:
 lightest = max(palette, key=lambda c: rgb2hsv(c)[2]);
 
 prof_guid = "b1dcc9dd-5262-4d8d-a863-c897e6d979b9"
-os.system('dconf write /org/gnome/terminal/legacy/profiles:/:' + prof_guid + "/background-color " + rgb_to_string(darkest)) 
-os.system('dconf write /org/gnome/terminal/legacy/profiles:/:' + prof_guid + "/foreground-color " + rgb_to_string(lightest)) 
+prof_preamble = "/org/gnome/terminal/legacy/profiles:/:" + prof_guid +"/"
+os.system('dconf write ' + prof_preamble + 'background-color "' + rgb_to_string(darkest) + '"') 
+os.system('dconf write ' + prof_preamble + 'foreground-color "' + rgb_to_string(lightest) + '"') 
+
+print("Palettes not implemented, exiting");
+exit();
+# Generate palette!
+# This is harder
+os.system('dconf write ' + prof_preamble + 'palette "' + generate_palette_str(palette, lightest, darkest)+ '"');
 

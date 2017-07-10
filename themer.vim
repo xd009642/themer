@@ -6,6 +6,20 @@ endif
 set background=dark
 let g:colors_name="themer"
 
+" Highlighting scheme. current count = 9?
+" if, else, return, continue, break, fn, let, switch = colour accent
+" numeric constants (inc bools) = colour 2
+" string/chars = color 3 
+" Column = background colour (opaque)
+" normal text (var names) = main text colour
+" Comment text
+" function, struct, enum names (in definition) = another colour?
+" special text colour 1 (i.e. rust macros or annotations)
+" standard library highlighting?
+
+hi ErrorMsg         ctermfg=NONE    ctermbg=NONE    cterm=bold      term=standout 
+hi Search           ctermfg=NONE    ctermbg=NONE    term=reverse
+hi StatusLineNC     ctermfg=NONE    ctermbg=NONE    term=reverse
 
 hi Boolean          ctermfg=1
 hi Character        ctermfg=2
@@ -30,7 +44,7 @@ hi Exception        ctermfg=0       ctermbg=NONE    cterm=bold
 hi Float            ctermfg=1  
 hi FoldColumn       ctermfg=0       ctermbg=0 
 hi Folded           ctermfg=0       ctermbg=0 
-hi Function         ctermfg=0  
+hi Function         ctermfg=3  
 hi Identifier       ctermfg=0       ctermbg=NONE    cterm=none
 hi Ignore           ctermfg=0       ctermbg=0  
 hi IncSearch        ctermfg=0       ctermbg=0 

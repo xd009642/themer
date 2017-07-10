@@ -3,16 +3,9 @@ import os
 import glob
 import colorsys
 from colorthief import ColorThief
+import webcolors
+from colour_math import *;
 
-def rgb2hsv(rgb):
-    return colorsys.rgb_to_hsv(rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0)
-
-def hsv2rgb(h, s, v):
-    rgb = colorsys.hsv_to_rgb(h, s, v)
-    return (255.0*rgb[0], 255.0*rgb[1], 255.0*rgb[2])
-
-def rgb_to_string(rgb):
-    return "'rgb("+str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])+")'"
 
 def palette2str(p):
     res = "["
@@ -44,7 +37,6 @@ def generate_palette_str(palette, light, dark):
 # See if palette is too sparse, add some complementary colours (opposite hue 
 # same SL etc).
 
-
 if len(sys.argv) == 1:
     exit("No image specified")
 else:
@@ -58,6 +50,8 @@ thief = ColorThief(picture);
 
 
 palette = thief.get_palette(color_count=ncolours)
+for p in palette:
+    print(str(p)+" "+name_colour(p))
 os.system("gsettings set org.gnome.desktop.background picture-uri " + picture);
 os.system("gsettings set org.gnome.desktop.screensaver picture-uri " + picture);
 

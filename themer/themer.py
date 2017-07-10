@@ -24,6 +24,9 @@ def generate_palette_str(palette, light, dark):
     # Row 2
     # Different shades of row 1?
     result = [dark, light];
+    org_dark = min(palette, key=lambda c:rgb2hsv(c)[2]) 
+    accent = max((p for p in palette if p!=org_dark), key= lambda c: 0.5*(colour_distance(light, c)+colour_distance(dark,c)))
+    print(str(light)+ ":"+str(dark)+":"+str(accent))
     return palette2str(result) 
 
 # Plan
@@ -50,8 +53,6 @@ thief = ColorThief(picture);
 
 
 palette = thief.get_palette(color_count=ncolours)
-for p in palette:
-    print(str(p)+" "+name_colour(p))
 os.system("gsettings set org.gnome.desktop.background picture-uri " + picture);
 os.system("gsettings set org.gnome.desktop.screensaver picture-uri " + picture);
 
@@ -69,7 +70,6 @@ os.system('dconf write ' + prof_preamble + 'background-color "' + rgb_to_string(
 os.system('dconf write ' + prof_preamble + 'foreground-color "' + rgb_to_string(lightest) + '"') 
 
 print("Palettes not implemented, exiting");
-exit();
 # Generate palette!
 # This is harder
 os.system('dconf write ' + prof_preamble + 'palette "' + generate_palette_str(palette, lightest, darkest)+ '"');

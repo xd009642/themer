@@ -50,7 +50,7 @@ def rgb2lab(rgb):
 
 # Definitely don't question these. Made from eyes or something.
 # Uses de 1994
-def distance_colour(r1, r2):
+def colour_distance(r1, r2):
     # Convert to CIELAB space
     c1 = rgb2lab(r1)
     c2 = rgb2lab(r2)

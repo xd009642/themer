@@ -26,7 +26,7 @@ def generate_palette_str(palette, light, dark):
     result = [dark, light];
     org_dark = min(palette, key=lambda c:rgb2hsv(c)[2]) 
     accent = max((p for p in palette if p!=org_dark), key= lambda c: 0.5*(colour_distance(light, c)+colour_distance(dark,c)))
-    print(str(light)+ ":"+str(dark)+":"+str(accent))
+    result.append(accent)
     return palette2str(result) 
 
 # Plan
@@ -70,6 +70,7 @@ os.system('dconf write ' + prof_preamble + 'background-color "' + rgb_to_string(
 os.system('dconf write ' + prof_preamble + 'foreground-color "' + rgb_to_string(lightest) + '"') 
 
 print("Palettes not implemented, exiting");
+exit();
 # Generate palette!
 # This is harder
 os.system('dconf write ' + prof_preamble + 'palette "' + generate_palette_str(palette, lightest, darkest)+ '"');

@@ -8,13 +8,13 @@ let g:colors_name="themer"
 
 " Highlighting scheme. current count = 9?
 " if, else, return, continue, break, fn, let, switch = colour accent
-" numeric constants (inc bools) = colour 2
+" numeric constants (inc bools) = colour 1
 " string/chars = color 3 
 " Column = background colour (opaque)
 " normal text (var names) = main text colour
 " Comment text
 " function, struct, enum names (in definition) = another colour?
-" special text colour 1 (i.e. rust macros or annotations)
+" special text colour 0 (i.e. rust macros or annotations)
 " standard library highlighting?
 
 hi ErrorMsg         ctermfg=NONE    ctermbg=NONE    cterm=bold      term=standout 
@@ -22,15 +22,15 @@ hi Search           ctermfg=NONE    ctermbg=NONE    term=reverse
 hi StatusLineNC     ctermfg=NONE    ctermbg=NONE    term=reverse
 
 hi Boolean          ctermfg=1
-hi Character        ctermfg=2
+hi Character        ctermfg=1
 hi Number           ctermfg=1
-hi String           ctermfg=2
-hi Conditional      ctermfg=4       ctermbg=NONE    cterm=bold
-hi Constant         ctermfg=5       ctermbg=NONE    cterm=bold
-hi Cursor           ctermfg=6       ctermbg=0     
-hi Debug            ctermfg=7       ctermbg=NONE    cterm=bold
-hi Define           ctermfg=8    
-hi Delimiter        ctermfg=5
+hi String           ctermfg=1
+hi Conditional      ctermfg=0       ctermbg=NONE    cterm=bold
+hi Constant         ctermfg=0       ctermbg=NONE    cterm=bold
+hi Cursor           ctermfg=0       ctermbg=0     
+hi Debug            ctermfg=0       ctermbg=NONE    cterm=bold
+hi Define           ctermfg=0    
+hi Delimiter        ctermfg=0
 
 hi DiffAdd          ctermfg=NONE    ctermbg=0 
 hi DiffChange       ctermfg=0       ctermbg=0  
@@ -44,7 +44,7 @@ hi Exception        ctermfg=0       ctermbg=NONE    cterm=bold
 hi Float            ctermfg=1  
 hi FoldColumn       ctermfg=0       ctermbg=0 
 hi Folded           ctermfg=0       ctermbg=0 
-hi Function         ctermfg=3  
+hi Function         ctermfg=0  
 hi Identifier       ctermfg=0       ctermbg=NONE    cterm=none
 hi Ignore           ctermfg=0       ctermbg=0  
 hi IncSearch        ctermfg=0       ctermbg=0 
